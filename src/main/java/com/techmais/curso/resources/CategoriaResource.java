@@ -3,7 +3,7 @@ package com.techmais.curso.resources;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,14 +26,21 @@ public class CategoriaResource {
 	
 	
 	@RequestMapping( value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> listar(@PathVariable Integer id) throws ObjectNotFoundException   {
+	public ResponseEntity<?> listar(@PathVariable Integer id) {
 		
 			Categoria obj;
-		
-				obj = catService.buscarC(id);
+				try {
+					
+					obj = catService.buscarC(id);
+					return ResponseEntity.ok().body(obj);
+					
+				} catch (ObjectNotFoundException e) {
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+					
+				}
 	
 			
-		return ResponseEntity.ok().body(obj);
+	
 	}//
 	
 	

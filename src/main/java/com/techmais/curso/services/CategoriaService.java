@@ -22,9 +22,7 @@ public class CategoriaService{
 	public Categoria buscarC(Integer id) throws ObjectNotFoundException {
 		
 		Optional<Categoria> objCat = categoriaRepository.findById(id);
-		
-		
-		
+	
 		return objCat.orElseThrow(()-> new ObjectNotFoundException("Objeto não Encontrado! ID = " + id + " Tipo " + Categoria.class.getName()));
 	}//
 	
