@@ -1,6 +1,6 @@
 package com.techmais.curso;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +39,8 @@ public class CursoModeloConceitualApplication  implements CommandLineRunner{
 		Produto p3 = new Produto(null,"Mouse", 80.00);
 		
 		
-		cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3));
-		cat2.getProdutos().addAll(Arrays.asList(p2));
+		//cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3));
+		//cat2.getProdutos().addAll(Arrays.asList(p2));
 		
 		p1.getCategorias().addAll(Arrays.asList(cat1));
 		p2.getCategorias().addAll(Arrays.asList(cat1,cat2));
