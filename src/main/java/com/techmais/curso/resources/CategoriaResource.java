@@ -29,19 +29,18 @@ public class CategoriaResource {
 	public ResponseEntity<?> listar(@PathVariable Integer id) {
 		
 			Categoria obj;
+			
 				try {
 					
 					obj = catService.buscarC(id);
 					return ResponseEntity.ok().body(obj);
 					
 				} catch (ObjectNotFoundException e) {
-					return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-					
-				}
-	
-			
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage()); }//	
 	
 	}//
+	
+	
 	
 	
 	

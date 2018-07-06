@@ -9,8 +9,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.techmais.curso.domains.Categoria;
+import com.techmais.curso.domains.Cidade;
+import com.techmais.curso.domains.Estado;
 import com.techmais.curso.domains.Produto;
 import com.techmais.curso.repository.CategoriaRepository;
+import com.techmais.curso.repository.CidadeRepository;
+import com.techmais.curso.repository.EstadoRepository;
 import com.techmais.curso.repository.ProdutoRepository;
 
 @SpringBootApplication
@@ -22,6 +26,11 @@ public class CursoModeloConceitualApplication  implements CommandLineRunner{
 	@Autowired
 	private ProdutoRepository produtoRepository;
 	
+	@Autowired
+	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursoModeloConceitualApplication.class, args);
@@ -48,6 +57,20 @@ public class CursoModeloConceitualApplication  implements CommandLineRunner{
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
+		
+		
+		Estado est1 = new Estado(null,"Minas Gerais");
+		Estado est2 = new Estado(null,"São Paulo");
+		
+		Cidade c1 = new Cidade(null, "Ubêrlandia",est1);
+		Cidade c2 = new Cidade(null, "São Paulo",est2);
+		Cidade c3 = new Cidade(null, "Campinas",est2);
+		
+		//est1.getCidades().add(c1);
+		//est2.getCidades().addAll(Arrays.asList(c2,c3));
+		
+		estadoRepository.saveAll(Arrays.asList(est1,est2));
+		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 		
 		
 		
