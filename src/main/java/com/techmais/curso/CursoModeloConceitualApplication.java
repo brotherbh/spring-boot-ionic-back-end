@@ -10,10 +10,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.techmais.curso.domains.Categoria;
 import com.techmais.curso.domains.Cidade;
+import com.techmais.curso.domains.Cliente;
+import com.techmais.curso.domains.Endereco;
 import com.techmais.curso.domains.Estado;
 import com.techmais.curso.domains.Produto;
+import com.techmais.curso.domains.enus.TipoCliente;
 import com.techmais.curso.repository.CategoriaRepository;
 import com.techmais.curso.repository.CidadeRepository;
+import com.techmais.curso.repository.ClienteRepository;
+import com.techmais.curso.repository.EnderecoRepository;
 import com.techmais.curso.repository.EstadoRepository;
 import com.techmais.curso.repository.ProdutoRepository;
 
@@ -31,11 +36,21 @@ public class CursoModeloConceitualApplication  implements CommandLineRunner{
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CursoModeloConceitualApplication.class, args);
-	}
+	}//
 
+	
+	
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -73,8 +88,24 @@ public class CursoModeloConceitualApplication  implements CommandLineRunner{
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 		
 		
+
+	
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com","992558525", TipoCliente.PESSOA_FÍSICA);
 		
 		
+		
+		
+		cli1.getTelefones().addAll(Arrays.asList("123456789","987654321"));
+		
+		Endereco e1 = new Endereco(null,"rua flores", "300", "Ap 203","B Jardim","385478-98114",cli1,c1);
+		 Endereco e2 = new Endereco(null,"Ave Marcos","105","Salão 800","Centro","75425-9877455",cli1,c2);
+		 
+		// cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
+		
+		 clienteRepository.save(cli1);
+		 enderecoRepository.saveAll(Arrays.asList(e1,e2));
+
+	
 		
 	}//
 	
