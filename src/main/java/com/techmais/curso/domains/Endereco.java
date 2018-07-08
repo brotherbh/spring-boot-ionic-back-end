@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ public class Endereco implements Serializable {
 	
 	private String cep;
 
-
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;

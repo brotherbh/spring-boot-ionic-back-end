@@ -98,7 +98,7 @@ public class CursoModeloConceitualApplication  implements CommandLineRunner{
 		cli1.getTelefones().addAll(Arrays.asList("123456789","987654321"));
 		
 		Endereco e1 = new Endereco(null,"rua flores", "300", "Ap 203","B Jardim","385478-98114",cli1,c1);
-		 Endereco e2 = new Endereco(null,"Ave Marcos","105","Salão 800","Centro","75425-9877455",cli1,c2);
+		Endereco e2 = new Endereco(null,"Ave Marcos","105","Salão 800","Centro","75425-9877455",cli1,c2);
 		 
 		// cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
 		
