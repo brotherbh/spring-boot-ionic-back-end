@@ -1,7 +1,11 @@
 package com.techmais.curso.domains;
 
+import javax.persistence.Entity;
+
 import com.techmais.curso.domains.enus.EstadoPagamento;
 
+
+@Entity
 public class PagamentoComCartao extends Pagamento {
 	private static final long serialVersionUID = 1L;
 	
