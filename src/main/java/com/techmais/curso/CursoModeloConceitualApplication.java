@@ -14,6 +14,7 @@ import com.techmais.curso.domains.Cidade;
 import com.techmais.curso.domains.Cliente;
 import com.techmais.curso.domains.Endereco;
 import com.techmais.curso.domains.Estado;
+import com.techmais.curso.domains.IntemPedido;
 import com.techmais.curso.domains.Pagamento;
 import com.techmais.curso.domains.PagamentoComBoleto;
 import com.techmais.curso.domains.PagamentoComCartao;
@@ -26,6 +27,7 @@ import com.techmais.curso.repository.CidadeRepository;
 import com.techmais.curso.repository.ClienteRepository;
 import com.techmais.curso.repository.EnderecoRepository;
 import com.techmais.curso.repository.EstadoRepository;
+import com.techmais.curso.repository.IntemPedidoRepository;
 import com.techmais.curso.repository.PagamentoRepository;
 import com.techmais.curso.repository.PedidoRepository;
 import com.techmais.curso.repository.ProdutoRepository;
@@ -60,7 +62,8 @@ public class CursoModeloConceitualApplication  implements CommandLineRunner{
 	@Autowired
 	PagamentoRepository pagamentoRepository;
 	
-
+	@Autowired
+	IntemPedidoRepository intemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursoModeloConceitualApplication.class, args);
@@ -142,7 +145,26 @@ public class CursoModeloConceitualApplication  implements CommandLineRunner{
 		 
 		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));
-		 
+		
+		
+		IntemPedido ip1 = new IntemPedido(ped1, p1, 0.00, 1, 2000.00);
+		
+		IntemPedido ip2 = new IntemPedido(ped1,p3, 0.00, 2, 80.00);
+		
+		IntemPedido ip3 = new IntemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+		
+		intemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		
+		
+		
+		
 		 
 	}//
 	
