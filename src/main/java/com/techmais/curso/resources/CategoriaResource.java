@@ -58,6 +58,20 @@ public class CategoriaResource {
 	
 	
 	
+	@RequestMapping( value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> atualizar(@RequestBody Categoria obj, @PathVariable Integer id){
+		
+		obj.setId(id);
+		try {
+			obj = catService.update(obj);
+		} catch (ObjectNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ResponseEntity.noContent().build();
+		
+	}//
+	
 	
 	
 }//FP
