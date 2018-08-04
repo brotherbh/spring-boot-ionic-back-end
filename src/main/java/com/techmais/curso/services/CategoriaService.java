@@ -3,6 +3,7 @@ package com.techmais.curso.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.techmais.curso.domains.Categoria;
@@ -40,6 +41,25 @@ public class CategoriaService{
 		
 		return categoriaRepository.save(obj);
 		
+		
+	}//
+
+
+	
+	public void delete(Integer id) throws ObjectNotFoundException {
+		
+		
+			buscarC(id);
+		
+		
+		try {
+		
+		categoriaRepository.deleteById(id);
+		
+		}catch( DataIntegrityViolationException dtex ) {
+			dtex.printStackTrace();
+		throw new DataIntegrityViolationException(" Categoria não pode ser removida tendo produtos associados.");
+		}
 		
 	}//
 	

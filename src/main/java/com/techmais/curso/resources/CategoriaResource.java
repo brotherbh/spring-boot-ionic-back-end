@@ -5,6 +5,7 @@ package com.techmais.curso.resources;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,10 +68,37 @@ public class CategoriaResource {
 		} catch (ObjectNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
+			
 		}
 		return ResponseEntity.noContent().build();
 		
 	}//
+	
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<?> deletar(@PathVariable Integer id) throws ObjectNotFoundException{
+		
+		try {
+			
+			catService.delete(id);
+			
+			return ResponseEntity.noContent().build();
+			
+		}catch(DataIntegrityViolationException dex) {
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(dex.getMessage());
+			
+		}//
+		
+		
+	}//
+	
+	
+	
+	
+	
+	
 	
 	
 	
